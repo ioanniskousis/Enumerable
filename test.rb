@@ -64,20 +64,38 @@ str_array = %w[zero one two three four five six]
 # p range.my_select
 # p str_array.my_select
 
-puts "------all-----"
-p int_array.all?{ |x| x > 0 }
-puts "------my_all--"
-p int_array.my_all?{ |x| x > 0 }
+# puts "------all-----"
+# p int_array.all?{ |x| x > 0 }
+# puts "------my_all--"
+# p int_array.my_all?{ |x| x > 0 }
+# puts
+# puts "------all-----"
+# p range.all?{ |x| x > 0 }
+# puts "------my_all--"
+# p range.my_all?{ |x| x > 0 }
+# puts
+# puts "------all-----"
+# p str_array.all?{ |x| x > "aaa" }
+# puts "------my_all--"
+# p str_array.my_all?{ |x| x > "aaa" }
+# puts
+# puts "------NO BLOCK---"
+# p int_array.my_all?
+
+puts "------any-----"
+p int_array.any?{ |x| x > 4 }
+puts "------my_any--"
+p int_array.my_any?{ |x| x > 4 }
 puts
-puts "------all-----"
-p range.all?{ |x| x > 0 }
-puts "------my_all--"
-p range.my_all?{ |x| x > 0 }
+puts "------any-----"
+p range.any?{ |x| x > 4 }
+puts "------my_any--"
+p range.my_any?{ |x| x > 4 }
 puts
-puts "------all-----"
-p str_array.all?{ |x| x > "aaa" }
-puts "------my_all--"
-p str_array.my_all?{ |x| x > "aaa" }
+puts "------any-----"
+p str_array.any?{ |x| x > "xxx" }
+puts "------my_any--"
+p str_array.my_any?{ |x| x > "xxx" }
 puts
 puts "------NO BLOCK---"
-p int_array.my_all?
+p int_array.my_any?

@@ -37,7 +37,11 @@ module Enumerable
   end
 
   def my_any?
-
+    return true unless block_given?
+    my_each do |x|
+      return true if yield(x)
+    end
+    return false
   end
 
   def my_none?
