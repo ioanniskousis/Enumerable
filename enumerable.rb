@@ -1,6 +1,13 @@
 module Enumerable
   def my_each
-
+    return "block is required" unless block_given?
+    items = self.is_a?(Range) ? self.to_a : self
+    count = 0
+    while count < items.length
+      yield(items[count])
+      count += 1
+    end
+    items
   end
 
   def my_each_with_index
@@ -38,4 +45,5 @@ module Enumerable
   def multiply_els
 
   end
+
 end
