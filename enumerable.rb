@@ -29,7 +29,11 @@ module Enumerable
   end
 
   def my_all?
-
+    return true unless block_given?
+    my_each do |x|
+      return false unless yield(x)
+    end
+    true
   end
 
   def my_any?

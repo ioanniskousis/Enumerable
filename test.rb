@@ -44,22 +44,40 @@ str_array = %w[zero one two three four five six]
 # p range.my_each_with_index
 # p str_array.my_each_with_index
 
-puts "------select-----"
-p int_array.select{ |x| x < 3 }
-puts "------my_select--"
-p int_array.my_select{ |x| x < 3 }
+# puts "------select-----"
+# p int_array.select{ |x| x < 3 }
+# puts "------my_select--"
+# p int_array.my_select{ |x| x < 3 }
+# puts
+# puts "------select-----"
+# p range.select{ |x| x < 3 }
+# puts "------my_select--"
+# p range.my_select{ |x| x < 3 }
+# puts
+# puts "------select-----"
+# p str_array.select{ |x| x < "t" }
+# puts "------my_select--"
+# p str_array.my_select{ |x| x < "t" }
+# puts
+# puts "------NO BLOCK---"
+# p int_array.my_select
+# p range.my_select
+# p str_array.my_select
+
+puts "------all-----"
+p int_array.all?{ |x| x > 0 }
+puts "------my_all--"
+p int_array.my_all?{ |x| x > 0 }
 puts
-puts "------select-----"
-p range.select{ |x| x < 3 }
-puts "------my_select--"
-p range.my_select{ |x| x < 3 }
+puts "------all-----"
+p range.all?{ |x| x > 0 }
+puts "------my_all--"
+p range.my_all?{ |x| x > 0 }
 puts
-puts "------select-----"
-p str_array.select{ |x| x < "t" }
-puts "------my_select--"
-p str_array.my_select{ |x| x < "t" }
+puts "------all-----"
+p str_array.all?{ |x| x > "aaa" }
+puts "------my_all--"
+p str_array.my_all?{ |x| x > "aaa" }
 puts
 puts "------NO BLOCK---"
-p int_array.my_select
-p range.my_select
-p str_array.my_select
+p int_array.my_all?
