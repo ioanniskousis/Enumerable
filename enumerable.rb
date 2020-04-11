@@ -2,16 +2,23 @@ module Enumerable
   def my_each
     return "block is required" unless block_given?
     items = self.is_a?(Range) ? self.to_a : self
-    count = 0
-    while count < items.length
-      yield(items[count])
-      count += 1
+    index = 0
+    while index < items.length
+      yield(items[index])
+      index += 1
     end
-    items
+    self
   end
 
   def my_each_with_index
-
+    return "block is required" unless block_given?
+    items = self.is_a?(Range) ? self.to_a : self
+    index = 0
+    while index < items.length
+      yield(items[index], index)
+      index += 1
+    end
+    self
   end
 
   def my_select
