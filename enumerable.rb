@@ -1,6 +1,6 @@
 module Enumerable
   def my_each
-    return "block is required" unless block_given?
+    return self.to_enum unless block_given?
     items = self.is_a?(Range) ? self.to_a : self
     index = 0
     while index < items.length
@@ -11,7 +11,7 @@ module Enumerable
   end
 
   def my_each_with_index
-    return "block is required" unless block_given?
+    return self.to_enum unless block_given?
     items = self.is_a?(Range) ? self.to_a : self
     index = 0
     while index < items.length
@@ -22,7 +22,10 @@ module Enumerable
   end
 
   def my_select
-
+    return self.to_enum unless block_given?
+    array = []
+    my_each{|item| array << item if yield(item) }
+    array
   end
 
   def my_all?
