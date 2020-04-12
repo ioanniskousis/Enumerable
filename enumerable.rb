@@ -84,7 +84,10 @@ module Enumerable
   end
 
   def my_map
-
+    return self unless block_given?
+    map_array = []
+    my_each_with_index{|x, i| map_array << yield(x, i)}
+    return map_array
   end
 
   def my_inject
