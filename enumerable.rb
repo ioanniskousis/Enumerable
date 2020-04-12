@@ -94,5 +94,4 @@ module Enumerable
   def multiply_els
 
   end
-
 end
