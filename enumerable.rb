@@ -33,7 +33,10 @@ module Enumerable
       my_each {|x| return false if (x  =~ args[0]).nil?}
       return true
     end
-    return true unless block_given?
+    unless block_given?
+      my_each {|x| return false if (x.nil?) || (x == false)}
+      return true
+    end
     my_each do |x|
       return false unless yield(x)
     end
@@ -52,8 +55,19 @@ module Enumerable
     return false
   end
 
-  def my_none?
-
+  def my_none?(*args)
+    if !args[0].nil?
+      my_each {|x| return false if x  =~ args[0]}
+      return true
+    end
+    unless block_given?
+      my_each {|x| return false unless (x.nil?) || (x == false)}
+      return true
+    end
+    my_each do |x|
+      return false if yield(x)
+    end
+    return true
   end
 
   def my_count
