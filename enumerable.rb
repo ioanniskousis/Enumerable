@@ -28,7 +28,11 @@ module Enumerable
     array
   end
 
-  def my_all?
+  def my_all?(*args)
+    if !args[0].nil?
+      my_each {|x| return false if (x  =~ args[0]).nil?}
+      return true
+    end
     return true unless block_given?
     my_each do |x|
       return false unless yield(x)
@@ -36,7 +40,11 @@ module Enumerable
     true
   end
 
-  def my_any?
+  def my_any?(*args)
+    if !args[0].nil?
+      my_each {|x| return true if x  =~ args[0]}
+      return false
+    end
     return true unless block_given?
     my_each do |x|
       return true if yield(x)
