@@ -50,14 +50,14 @@ puts
 puts "------WITH ARGUMENT---"
 puts 'Trying: %w[zero one two three four five six].my_none?(/[a-d]/)'
 puts "------none--"
-p %w[zero one two three four five six].none?(/[a-d]/)
+p str_array.none?(/[a-d]/)
 puts "------my_none--"
-p %w[zero one two three four five six].my_none?(/[a-d]/)
+p str_array.my_none?(/[a-d]/)
 puts
 puts 'Trying: %w[zero one two three four five six].my_none?(/[f]/)'
 puts "------none--"
-p %w[zero one two three four five six].none?(/[f]/)
+p str_array.none?(/[f]/)
 puts "------my_none--"
-p %w[zero one two three four five six].my_none?(/[f]/)
+p str_array.my_none?(/[f]/)
 puts
 puts

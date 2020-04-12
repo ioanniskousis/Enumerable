@@ -70,8 +70,17 @@ module Enumerable
     return true
   end
 
-  def my_count
-
+  def my_count(item=nil)
+    count = 0
+    if !item.nil?
+      my_each{|x| count += 1 if x == item}
+    else
+      unless block_given?
+        return self.length
+      end
+      my_each{|x| count += 1 if yield(x)}
+    end
+    count
   end
 
   def my_map
