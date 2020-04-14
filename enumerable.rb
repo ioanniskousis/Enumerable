@@ -90,11 +90,33 @@ module Enumerable
     return map_array
   end
 
-  def my_inject
-
+  # rubocop:disable Metrics/CyclomaticComplexity
+  def my_inject(*args)
+    items = self.is_a?(Range) ? self.to_a : self
+    accumulator = 0
+    if args.count == 0
+      accumulator = self[0]
+      items.my_each_with_index { |item, i| accumulator = yield(accumulator, item) if i > 0}
+    elsif args.count == 1
+      if args[0].is_a?(Numeric)
+        accumulator = args[0]
+        items.my_each_with_index { |item, i| accumulator = yield(accumulator, item)}
+      elsif args[0].is_a?(Symbol)
+        operator = args[0]
+        accumulator = self[0]
+        items.my_each_with_index { |item, i| accumulator = accumulator.send(operator, item) if i > 0}
+      end
+    elsif args.count == 2
+      accumulator = args[0]
+      operator = args[1]
+      items.my_each_with_index { |item, i| accumulator = accumulator.send(operator, item) }
+    end
+    accumulator
   end
+  # rubocop:enable Metrics/CyclomaticComplexity
 
   def multiply_els
 
   end
 end
+
