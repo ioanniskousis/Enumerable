@@ -1,6 +1,6 @@
 module Enumerable
   def my_each
-    return to_enum unless block_given?
+    return enum_for unless block_given?
 
     items = is_a?(Range) ? to_a : self
     index = 0
@@ -12,7 +12,7 @@ module Enumerable
   end
 
   def my_each_with_index
-    return to_enum unless block_given?
+    return enum_for unless block_given?
 
     items = is_a?(Range) ? to_a : self
     index = 0
@@ -24,10 +24,10 @@ module Enumerable
   end
 
   def my_select
-    return to_enum unless block_given?
+    return enum_for unless block_given?
 
     array = []
-    my_each{|item| array << item if yield(item) }
+    my_each { |item| array << item if yield(item) }
     array
   end
 
@@ -37,23 +37,23 @@ module Enumerable
       return true
     end
     unless block_given?
-      my_each { |x| return false if (x.nil?) || x == false }
+      my_each { |x| return false if x.nil? || x == false }
       return true
     end
-    my_each { d |x| return false unless yield(x) }
+    my_each { |x| return false unless yield(x) }
     true
   end
 
   def my_any?(*args)
-    if !args[0].nil?
+    unless args[0].nil?
       my_each { |x| return true if x =~ args[0] }
       return false
     end
-    return true unless block_given?
-
-    my_each do |x|
-      return true if yield(x)
+    unless block_given?
+      my_each { |x| return true if !x.nil? && (x != false) }
+      return false
     end
+    my_each { |x| return true if yield(x) }
     false
   end
 
@@ -63,7 +63,7 @@ module Enumerable
       return true
     end
     unless block_given?
-      my_each { |x| return false unless (x.nil?) || (x == false) }
+      my_each { |x| return false unless x.nil? || (x == false) }
       return true
     end
     my_each do |x|
@@ -78,52 +78,52 @@ module Enumerable
       my_each { |x| count += 1 if x == item }
     else
       return length unless block_given?
-        
+
       my_each { |x| count += 1 if yield(x) }
     end
     count
   end
 
-  def my_map
-    return self unless block_given?
-
+  def my_map(proc = nil)
     map_array = []
-    my_each_with_index { |x, i| map_array << yield(x, i) }
-    return map_array
+    if proc.nil?
+      return to_enum unless block_given?
+
+      my_each { |x| map_array << yield(x) }
+    else
+      my_each { |x| map_array << proc.call(x) }
+    end
+    map_array
   end
 
   def my_inject(*args)
     items = is_a?(Range) ? to_a : self
-    acc = 0
+    accumulator = 0
     if args.count.zero?
-      acc = self[0]
+      accumulator = self[0]
       items.my_each_with_index do |item, i|
-        acc = yield(acc, item) if i.positive?
+        accumulator = yield(accumulator, item) if i.positive?
       end
     elsif args.count == 1
       if args[0].is_a?(Numeric)
-        acc = args[0]
+        accumulator = args[0]
         items.my_each do |item|
-          acc = yield(acc, item)
+          accumulator = yield(accumulator, item)
         end
       elsif args[0].is_a?(Symbol)
         operator = args[0]
-        acc = self[0]
+        accumulator = self[0]
         items.my_each_with_index do |item, i|
-          acc = acc.send(operator, item) if i.positive?
+          accumulator = accumulator.send(operator, item) if i.positive?
         end
       end
     elsif args.count == 2
-      acc = args[0]
+      accumulator = args[0]
       operator = args[1]
       items.my_each do |item|
-        acc = acc.send(operator, item)
+        accumulator = accumulator.send(operator, item)
       end
     end
-    acc
-  end
-
-  def multiply_els
-    p self
+    accumulator
   end
 end

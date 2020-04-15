@@ -8,23 +8,23 @@ not_nil_array = [nil, false, '']
 
 puts 'Trying: ' + int_array.to_s + '.my_count{ |x| x > 3 }'
 puts '------count-----'
-p int_array.count { |x| x > 3 }
+p(int_array.count { |x| x > 3 })
 puts '------my_count--'
-p int_array.my_count { |x| x > 3 }
+p(int_array.my_count { |x| x > 3 })
 puts '------------------------------------------------------------------------'
 puts
 puts 'Trying: (' + range.to_s + ').my_count{ |x| x > 3 }'
 puts '------count-----'
-p range.count { |x| x > 3 }
+p(range.count { |x| x > 3 })
 puts '------my_count--'
-p range.my_count { |x| x > 3 }
+p(range.my_count { |x| x > 3 })
 puts '------------------------------------------------------------------------'
 puts
 puts 'Trying: ' + str_array.to_s + '.my_count{ |x| x > "four" }'
 puts '------count-----'
-p str_array.count { |x| x > 'four' }
+p(str_array.count { |x| x > 'four' })
 puts '------my_count--'
-p str_array.my_count { |x| x > 'four' }
+p(str_array.my_count { |x| x > 'four' })
 puts '------------------------------------------------------------------------'
 puts
 puts '------NO BLOCK---'
