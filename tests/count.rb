@@ -5,7 +5,9 @@ range = (1..5)
 str_array = %w[zero one two three four five six six six]
 nil_array = [nil, false]
 not_nil_array = [nil, false, '']
-
+puts 'TESTING my_count'
+puts
+puts
 puts 'Trying: ' + int_array.to_s + '.my_count{ |x| x > 3 }'
 puts '------count-----'
 p(int_array.count { |x| x > 3 })

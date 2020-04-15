@@ -5,7 +5,9 @@ range = (1..5)
 str_array = %w[zero one two three four five six]
 bool_array = [nil, false, nil, true]
 nil_array = [nil, false, nil, false]
-
+puts 'TESTING my_any'
+puts
+puts
 puts 'Trying: ' + int_array.to_s + '.my_any?{ |x| x > 4 }'
 puts '------any--'
 p(int_array.any? { |x| x > 4 })

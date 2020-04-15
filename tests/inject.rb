@@ -2,7 +2,9 @@ require_relative 'include_enumerable'
 
 int_array = [1, 2, 3, 4, 3, 2, 1]
 floats_array = [1.0, 2.0, 3.0, 4.0, 3.0, 2.0, 1.0]
-
+puts 'TESTING my_inject'
+puts
+puts
 puts '--USING A BLOCK WITH NO ARGUMENTS---------------------------------'
 puts
 puts 'Testing : ' + int_array.to_s + '.my_inject { |acc, i| acc + i }'

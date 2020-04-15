@@ -3,7 +3,9 @@ require_relative 'include_enumerable'
 int_array = [1, 2, 3, 4, 3, 2, 1]
 range = (1..5)
 str_array = %w[zero one two three four five six]
-
+puts 'TESTING my_each'
+puts
+puts
 puts "Trying: [1, 2, 3, 4, 3, 2, 1].my_each { |x| print 'x |'  }"
 puts '----each------'
 p(int_array.each { |x| print "#{x} | " })

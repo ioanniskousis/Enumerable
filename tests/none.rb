@@ -5,7 +5,9 @@ range = (1..5)
 str_array = %w[zero one two three four five six]
 nil_array = [nil, false]
 not_nil_array = [nil, false, '']
-
+puts 'TESTING my_none'
+puts
+puts
 puts 'Trying: [1, 2, 3, 4, 3, 2, 1].my_none?{ |x| x > 4 }'
 puts '------none-----'
 p(int_array.none? { |x| x > 4 })

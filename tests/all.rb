@@ -4,7 +4,9 @@ int_array = [1, 2, 3, 4, 3, 2, 1]
 range = (1..5)
 str_array = %w[zero one two three four five six]
 int_with_nil = [1, 2, 3, 4, 3, 2, 1, nil]
-
+puts 'TESTING my_all'
+puts
+puts
 puts 'Trying: [1, 2, 3, 4, 3, 2, 1].my_all?{ |x| x > 1 }'
 puts '------all-----'
 p(int_array.all? { |x| x > 1 })
