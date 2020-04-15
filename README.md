@@ -79,9 +79,9 @@ All methods function exactly the way the original does, supporting all versions 
 - all.rb, any.rb, count.rb, each_with_index.rb, each.rb, inject.rb, map.rb, none.rb, select.rb all inside the folder <i>tests</i>
   Each of these files is a test file for a corresponding method. They run all possible case of calling the relevant method.
 
-- tests.rb runs all tests at once icluding all test files from 'tests' folder
+- tests.rb runs all tests at once including all test files from 'tests' folder
 
-- include_enumerable.rb is an intermidiate file, used by all testing files in order to include the enumerable module. It is created explicitly to support a case of in which the enumerable.rb or a test file is moved to different folder.
+- include_enumerable.rb is an intermidiate file, used by all testing files in order to include the enumerable module. It is created explicitly to support a case in which the enumerable.rb or a test file is moved to different folder.
 
 
 <!-- ABOUT THE PROJECT -->
