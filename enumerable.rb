@@ -31,7 +31,13 @@ module Enumerable
 
   def my_all?(*args)
     unless args[0].nil?
-      my_each { |x| return false if (x =~ args[0]).nil? }
+      if args[0].is_a?(Class)
+        my_each { |x| return false if !x.is_a?(args[0]) }
+      elsif args[0].class.name == 'Regexp'
+        my_each { |x| return false if (x =~ args[0]).nil? }
+      elsif args[0].is_a?(Object)
+        my_each { |x| return false unless x == args[0] }
+      end
       return true
     end
     unless block_given?
@@ -45,9 +51,8 @@ module Enumerable
   def my_any?(*args)
     unless args[0].nil?
       my_each { |x| return true if args[0].is_a?(Class) && x.is_a?(args[0]) }
-      return include?(args[0]) if args[0].is_a?(String) || args[0].is_a?(Object)
+      return include?(args[0]) if args[0].is_a?(Object)
 
-      my_each { |x| return true if args[0].is_a?(Numeric) && x.is_a?(Numeric) && x == args[0] }
       my_each { |x| return true if x =~ args[0] }
       return false
     end
