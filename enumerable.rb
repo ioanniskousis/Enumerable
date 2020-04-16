@@ -22,7 +22,7 @@ module Enumerable
   end
 
   def my_select
-    return enum_for unless block_given?
+    return to_enum unless block_given?
 
     array = []
     my_each { |item| array << item if yield(item) }
@@ -32,7 +32,7 @@ module Enumerable
   def my_all?(*args)
     unless args[0].nil?
       if args[0].is_a?(Class)
-        my_each { |x| return false if !x.is_a?(args[0]) }
+        my_each { |x| return false unless x.is_a?(args[0]) }
       elsif args[0].class.name == 'Regexp'
         my_each { |x| return false if (x =~ args[0]).nil? }
       elsif args[0].is_a?(Object)
