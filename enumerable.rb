@@ -51,9 +51,9 @@ module Enumerable
   def my_any?(*args)
     unless args[0].nil?
       my_each { |x| return true if args[0].is_a?(Class) && x.is_a?(args[0]) }
+      my_each { |x| return true if x =~ args[0] }
       return include?(args[0]) if args[0].is_a?(Object)
 
-      my_each { |x| return true if x =~ args[0] }
       return false
     end
     unless block_given?
