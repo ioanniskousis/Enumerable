@@ -8,7 +8,6 @@ module Enumerable
       yield(items[index])
       index += 1
     end
-    self
   end
 
   def my_each_with_index
@@ -20,7 +19,6 @@ module Enumerable
       yield(items[index], index)
       index += 1
     end
-    self
   end
 
   def my_select
@@ -46,6 +44,10 @@ module Enumerable
 
   def my_any?(*args)
     unless args[0].nil?
+      my_each { |x| return true if args[0].is_a?(Class) && x.is_a?(args[0]) }
+      return include?(args[0]) if args[0].is_a?(String) || args[0].is_a?(Object)
+
+      my_each { |x| return true if args[0].is_a?(Numeric) && x.is_a?(Numeric) && x == args[0] }
       my_each { |x| return true if x =~ args[0] }
       return false
     end
@@ -110,8 +112,8 @@ module Enumerable
         items.my_each do |item|
           accumulator = yield(accumulator, item)
         end
-      elsif args[0].is_a?(Symbol)
-        operator = args[0]
+      elsif args[0].is_a?(Symbol) || args[0].is_a?(String)
+        operator = args[0].is_a?(String) ? args[0].to_sym : args[0]
         accumulator = self[0]
         items.my_each_with_index do |item, i|
           accumulator = accumulator.send(operator, item) if i.positive?
