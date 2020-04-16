@@ -49,7 +49,7 @@ puts '------my_none--'
 p not_nil_array.my_none?
 puts '------------------------------------------------------------------------'
 puts
-puts '------WITH ARGUMENT---'
+puts '------WITH ARGUMENT REGEX---'
 puts 'Trying: %w[zero one two three four five six].my_none?(/[a-d]/)'
 puts '------none--'
 p str_array.none?(/[a-d]/)
@@ -61,5 +61,19 @@ puts '------none--'
 p str_array.none?(/[f]/)
 puts '------my_none--'
 p str_array.my_none?(/[f]/)
+puts
+puts '------WITH ARGUMENT CLASS---'
+puts 'Trying: %w[zero one two three four five six].my_none?(String)'
+puts '------none--'
+p str_array.none?(String)
+puts '------my_none--'
+p str_array.my_none?(String)
+puts
+puts 'Trying: %w[zero one two three four five six].my_none?(Integer)'
+puts '------none--'
+p str_array.none?(Integer)
+puts '------my_none--'
+p str_array.my_none?(Integer)
+puts
 puts
 puts

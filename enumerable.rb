@@ -66,7 +66,13 @@ module Enumerable
 
   def my_none?(*args)
     unless args[0].nil?
-      my_each { |x| return false if x =~ args[0] }
+      if args[0].is_a?(Class)
+        my_each { |x| return false if x.is_a?(args[0]) }
+      elsif args[0].class.name == 'Regexp'
+        my_each { |x| return false if x =~ args[0] }
+      elsif args[0].is_a?(Object)
+        my_each { |x| return false if x == args[0] }
+      end
       return true
     end
     unless block_given?
