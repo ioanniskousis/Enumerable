@@ -8,6 +8,7 @@ module Enumerable
       yield(items[index])
       index += 1
     end
+    self
   end
 
   def my_each_with_index
@@ -19,6 +20,7 @@ module Enumerable
       yield(items[index], index)
       index += 1
     end
+    self
   end
 
   def my_select
